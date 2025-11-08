@@ -1,0 +1,59 @@
+.splash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #115e61,#105a5c, #1D9598); 
+
+  position: relative;
+  overflow: hidden;
+}
+
+.splash .overlay {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.05);
+  transform: rotate(25deg);
+  animation: moveOverlay 6s linear infinite;
+}
+
+@keyframes moveOverlay {
+  from { transform: translateX(-50%) rotate(25deg); }
+  to { transform: translateX(0%) rotate(25deg); }
+}
+
+.splash-content {
+  text-align: center;
+  z-index: 2;
+}
+
+.splash-logo {
+  width: 220px;
+  animation: fadeIn 1.5s ease-in-out, float 3s ease-in-out infinite;
+}
+
+.splash-text {
+  margin-top: 20px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  animation: fadeInUp 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}

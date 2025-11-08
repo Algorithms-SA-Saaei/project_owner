@@ -158,6 +158,9 @@
 
     <script>
         (function () {
+            if (localStorage.getItem('token')) {
+                window.location.href = './index.html';
+            }
             const API_URL = 'https://api-stg.saaei.co/api/v1/signin';
             const form = document.getElementById('loginForm');
             const phoneInput = document.getElementById('phone');
@@ -238,9 +241,9 @@
 
                     const token = data.token
                     if (token) localStorage.setItem('token', token);
-                    else if (data) localStorage.setItem('user_data', JSON.stringify(data));
+                    else if (data.user) localStorage.setItem('user', JSON.stringify(data.user));
 
-                    window.location.href = './index.html';
+                    window.location.href = './home.html';
 
                 } catch (err) {
                     console.error('Login error', err);
