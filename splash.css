@@ -4,12 +4,15 @@
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background: linear-gradient(135deg, #115e61,#105a5c, #1D9598); 
+  /* background: linear-gradient(135deg, #115e61,#105a5c, #1D9598);  */
+  background: linear-gradient(135deg, #0f1a2c, #233b5b, #3a5278);
 
   position: relative;
   overflow: hidden;
 }
-
+.splash.hide {
+  display: none;
+}
 .splash .overlay {
   position: absolute;
   width: 200%;
