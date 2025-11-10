@@ -52,7 +52,7 @@ body {
 }
 
 .stat-card {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     height: 90px;
     align-items: center;
