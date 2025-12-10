@@ -222,6 +222,74 @@ body {
     transform: translateY(-50%) rotate(45deg);
     background: transparent;
 }
+#stat-value7{
+    border-left:4px solid;
+    text-align: center;
+}
+#stat-value7::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -64%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-left: 4px solid #c4996a;
+    border-bottom: 4px solid #c4996a;
+    transform: translateY(-50%) rotate(45deg);
+    background: transparent;
+}
+#stat-value8{
+    border-right:4px solid;
+    text-align: center;
+}
+#stat-value8::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-right: 4px solid #c4996a;
+    border-top: 4px solid #c4996a;
+    transform: translateY(-50%) rotate(45deg);
+    background: transparent;
+}
+#stat-value9{
+    border-left:4px solid;
+    text-align: center;
+}
+#stat-value9::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -64%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-left: 4px solid #c4996a;
+    border-bottom: 4px solid #c4996a;
+    transform: translateY(-50%) rotate(45deg);
+    background: transparent;
+}
+#stat-value10{
+    border-right:4px solid;
+    text-align: center;
+}
+#stat-value10::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-right: 4px solid #c4996a;
+    border-top: 4px solid #c4996a;
+    transform: translateY(-50%) rotate(45deg);
+    background: transparent;
+}
 
 .last-card {
     flex-direction: row-reverse;

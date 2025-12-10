@@ -39,11 +39,11 @@
         <small class="text-white-50">اتصال ورسالة</small>
       </span>
     </div>
-    <div class="stat-label">عدد التواصل</div>
+    <div class="stat-label" style="text-align: left;">عدد التواصل</div>
   </div>
 
   <div class="stat-card">
-    <div class="stat-label">عدد الزيارات</div>
+    <div class="stat-label"  style="text-align: right;">عدد الزيارات</div>
     <div class="stat-value-box">
       <span class="stat-value" id="stat-value2">--
         <small class="text-white-50">عميل</small>
@@ -63,31 +63,84 @@
         <small class="text-white-50">حجز</small>
       </span>
     </div>
-    <div class="stat-label">عدد المحجوز</div>
+    <div class="stat-label"  style="text-align: left;">عدد المحجوز</div>
   </div>
-
   <div class="stat-card">
-    <div class="stat-label">عدد الشقق المفرغة</div>
+    <div class="stat-label" style="text-align: right;">اجمالى المحجوز  </div>
     <div class="stat-value-box">
       <span class="stat-value" id="stat-value4">--
-        <small class="text-white-50">شقة</small>
+        <small class="text-white-50">ريـــال</small>
       </span>
-      <div class="icon-box" title="شقق مفرغة">
-        <i class="fas fa-building"></i>
+      <div class="icon-box" title=" اجمالى المحجوز">
+        <i class="fas fa-dollar"></i>
       </div>
     </div>
   </div>
-
   <div class="stat-card">
     <div class="stat-value-box">
-      <div class="icon-box" title="شقق غير مفرغة">
+      <div class="icon-box" title="شقق تم بيعها ">
         <i class="fas fa-building"></i>
       </div>
       <span class="stat-value" id="stat-value5">--
         <small class="text-white-50">شقة</small>
       </span>
     </div>
-    <div class="stat-label">عدد الشقق غير المفرغة</div>
+    <div class="stat-label" style="text-align: left;">  عدد المباع</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label" style="text-align: right;">اجمالى المباع  </div>
+    <div class="stat-value-box">
+      <span class="stat-value" id="stat-value6">--
+        <small class="text-white-50">ريـــال</small>
+      </span>
+      <div class="icon-box" title=" اجمالى المباع">
+        <i class="fas fa-dollar"></i>
+      </div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value-box">
+      <div class="icon-box" title="شقق تم التسليم ">
+        <i class="fas fa-building"></i>
+      </div>
+      <span class="stat-value" id="stat-value7">--
+        <small class="text-white-50">شقة</small>
+      </span>
+    </div>
+    <div class="stat-label" style="text-align: left;"> تم التسليم</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label" style="text-align: right;">اجمالى التسليم  </div>
+    <div class="stat-value-box">
+      <span class="stat-value" id="stat-value8">--
+        <small class="text-white-50">ريـــال</small>
+      </span>
+      <div class="icon-box" title=" اجمالى التسليم">
+        <i class="fas fa-dollar"></i>
+      </div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value-box">
+      <div class="icon-box" title="شقق تم افراغها ">
+        <i class="fas fa-building"></i>
+      </div>
+      <span class="stat-value" id="stat-value9">--
+        <small class="text-white-50">شقة</small>
+      </span>
+    </div>
+    <div class="stat-label" style="text-align: left;"> تم الافراغ</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label" style="text-align: right;">اجمالى المفرغ  </div>
+    <div class="stat-value-box">
+      <span class="stat-value" id="stat-value10">--
+        <small class="text-white-50">ريـــال</small>
+      </span>
+      <div class="icon-box" title=" اجمالى المفرغ">
+        <i class="fas fa-dollar"></i>
+      </div>
+    </div>
   </div>
 
   <div class="stat-card last-card">
@@ -95,7 +148,7 @@
       <div class="icon-box" title="مشاهدات">
         <i class="fas fa-eye"></i>
       </div>
-      <span class="stat-value" id="stat-value6">--
+      <span class="stat-value" id="stat-value11">--
         <small class="text-white-50">مشاهدة</small>
       </span>
     </div>
@@ -155,10 +208,15 @@
   function renderStats(data) {
     document.getElementById('stat-value1').firstChild.textContent = data.contactCount ?? 0;
     document.getElementById('stat-value2').firstChild.textContent = data.visitingsCount ?? 0;
-    document.getElementById('stat-value3').firstChild.textContent = data.bookingCount ?? 0;
-    document.getElementById('stat-value4').firstChild.textContent = data.completedDeals ?? 0;
-    document.getElementById('stat-value5').firstChild.textContent = data.unCompletedDeals ?? 0;
-    document.getElementById('stat-value6').firstChild.textContent = data.totalViews ?? 0;
+    document.getElementById('stat-value3').firstChild.textContent = data.bookedCount ?? 0;
+    document.getElementById('stat-value4').firstChild.textContent = data.bookedAmount ?? 0;
+    document.getElementById('stat-value5').firstChild.textContent = data.soldCount ?? 0;
+    document.getElementById('stat-value6').firstChild.textContent = data.soldAmount ?? 0;
+    document.getElementById('stat-value7').firstChild.textContent = data.deliveredCount ?? 0;
+    document.getElementById('stat-value8').firstChild.textContent = data.deliveredAmount ?? 0;
+    document.getElementById('stat-value9').firstChild.textContent = data.completedCount ?? 0;
+    document.getElementById('stat-value10').firstChild.textContent = data.completedAmount ?? 0;
+    document.getElementById('stat-value11').firstChild.textContent = data.totalViews ?? 0;
 
     if (data.project && data.project.name) {
       document.getElementById('projectName').textContent = data.project.name;
