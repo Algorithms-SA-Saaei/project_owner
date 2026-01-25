@@ -325,8 +325,8 @@ body {
     cursor: pointer;
 }
 .project-name{
-    font-size: 36px;
-    width: 180%;
+    font-size: 180%;
+    width: 75%;
     margin-right: 10px;
     text-align: right;
 }
