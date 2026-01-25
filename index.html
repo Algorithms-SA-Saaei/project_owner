@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,52 +9,66 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="./splash.css">
 </head>
+
 <body>
   <div class="splash">
     <div class="overlay"></div>
     <div class="splash-content">
-      <img src="./logo.png" alt="logo" class="splash-logo"/>
+      <img src="./logo.png" alt="logo" class="splash-logo" />
       <h2 class="splash-text mt-3">مرحبًا بك في ساعي</h2>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-  (function() {
-    const token = localStorage.getItem('token');
-    const userData = JSON.parse(localStorage.getItem('user') || "{}");
+    (function () {
+      const token = localStorage.getItem('token');
 
-    if (!token) {
-      window.location.href = './login.html';
-      return;
-    }
-
-    const projectId = userData.project ? userData.project : 3;
-    fetch(`https://api.saaei.co/api/v1/projects/${projectId}/ownerProjectReport/get`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => {
-      if (!res.ok) throw new Error('فشل في تحميل البيانات');
-      return res.json();
-    })
-    .then(data => {
-      console.log('تم تحميل بيانات المشروع:', data);
-      localStorage.setItem('projectReport', JSON.stringify(data));
-
-      setTimeout(() => {
-        window.location.href = './home.html';
-      }, 1000);
-    })
-    .catch(err => {
-      console.error('حدث خطأ أثناء تحميل البيانات:', err);
-      document.querySelector('.splash-text').textContent = 'حدث خطأ أثناء التحميل';
-      setTimeout(() => {
+      if (!token) {
         window.location.href = './login.html';
-      }, 2500);
-    });
-  })();
+        return;
+      }
+
+      // جلب ID المشروع من الرابط
+      const params = new URLSearchParams(window.location.search);
+      const projectId = params.get("id");
+
+      if (!projectId) {
+        document.querySelector('.splash-text').textContent = 'لم يتم تحديد مشروع';
+        setTimeout(() => {
+          window.location.href = './home.html'; // صفحة اختيار المشاريع
+        }, 2000);
+        return;
+      }
+
+      fetch(`https://api.saaei.co/api/v1/projects/${projectId}/ownerProjectReport/get`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('فشل في تحميل البيانات');
+          return res.json();
+        })
+        .then(data => {
+          console.log('تم تحميل بيانات المشروع:', data);
+          localStorage.setItem('projectReport', JSON.stringify(data));
+          localStorage.setItem('activeProjectId', projectId);
+
+          setTimeout(() => {
+            window.location.href = './home.html';
+          }, 1000);
+        })
+        .catch(err => {
+          console.error('حدث خطأ أثناء تحميل البيانات:', err);
+          document.querySelector('.splash-text').textContent = 'حدث خطأ أثناء التحميل';
+          setTimeout(() => {
+            window.location.href = './login.html';
+          }, 2500);
+        });
+    })();
   </script>
+
 </body>
+
 </html>
