@@ -33,7 +33,7 @@
   </button>
 
   <div class="container stat-container" style="display:none;" id="mainContent">
-    <img alt="" id="logo" src="./logo.png" />
+    <img alt="" id="projectLogo" src="./logo.png" />
     <p id="projectName" class="fw-bold text-center mt-3">--</p>
 
     <div class="stat-card">
@@ -226,10 +226,10 @@
         document.getElementById('stat-value9').firstChild.textContent = data.completedCount || 0;
         document.getElementById('stat-value10').firstChild.textContent = data.completedAmount || 0;
         document.getElementById('stat-value11').firstChild.textContent = data.totalViews || 0;
-
+        console.log("ownerProjectReport : project =", data.project);
         if (data.project) {
           document.getElementById('projectName').textContent = data.project.name;
-          document.getElementById('logo').src = data.project.img;
+          document.getElementById('projectLogo').src = data.project.img;
         }
       }
 
