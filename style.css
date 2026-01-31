@@ -36,7 +36,7 @@ body {
     margin-bottom: 30px;
 }
 
-#logo {
+#logo ,#projectLogo{
     width: 40%;
     height: 130px;
     margin: auto;
