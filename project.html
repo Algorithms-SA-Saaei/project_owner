@@ -226,10 +226,8 @@
         document.getElementById('stat-value10').firstChild.textContent = data.completedAmount || 0;
         document.getElementById('stat-value11').firstChild.textContent = data.totalViews || 0;
 
-        if (data.project?.name) {
+        if (data.project) {
           document.getElementById('projectName').textContent = data.project.name;
-        }
-        if (data.project?.img) {
           document.getElementById('logo').src = data.project.img;
         }
       }
