@@ -27,15 +27,22 @@
   <button id="logoutBtn">
     <i class="fas fa-sign-out-alt"></i> تسجيل خروج
   </button>
-  <button id="projectsBtn">
-    <a href="home.html" style="color:white; text-decoration:none;">
+  <a href="home.html" id="projectsBtn" style="color:white; text-decoration:none;">
+    <button>
       <i class="fas fa-project-diagram"></i>   المشاريع
-  </button>
+    </button>
+  </a>
 
   <div class="container stat-container" style="display:none;" id="mainContent">
-    <img alt="" id="projectLogo" src="./logo.png" />
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <img alt="" id="projectLogo" src="./logo.png" />
+    </div>
     <p id="projectName" class="fw-bold text-center mt-3">--</p>
-
+    <select id="dateFilterSelect" class="form-select" style="width: 150px;margin-bottom: 20px;">
+        <option value="all">الكل</option>
+        <option value="week">آخر أسبوع</option>
+        <option value="month">آخر شهر</option>
+    </select>
     <div class="stat-card">
       <div class="stat-value-box">
         <div class="icon-box" title="اتصال ورسالة">
@@ -184,13 +191,43 @@
 
       const splash = document.getElementById('splash');
       const mainContent = document.getElementById('mainContent');
+      const dateFilterSelect = document.getElementById('dateFilterSelect');
 
       document.getElementById('logoutBtn').addEventListener('click', () => {
         localStorage.clear();
         window.location.href = './login.html';
       });
 
-      fetch(`https://api.saaei.co/api/v1/projects/${projectId}/ownerProjectReport/get`, {
+      if (dateFilterSelect) {
+        dateFilterSelect.addEventListener('change', (e) => {
+          e.preventDefault();
+          fetchProjectData(e.target.value);
+        });
+      }
+
+      function buildRequestUrl(filterType) {
+        let url = `https://api.saaei.co/api/v1/projects/${projectId}/ownerProjectReport/get`;
+        
+        if (filterType === 'week') {
+          const endDate = new Date();
+          const startDate = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
+          const formatDate = (date) => date.toISOString().split('T')[0];
+          url += `?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`;
+        } else if (filterType === 'month') {
+          const endDate = new Date();
+          const startDate = new Date(endDate.getFullYear(), endDate.getMonth(), 1);
+          const formatDate = (date) => date.toISOString().split('T')[0];
+          url += `?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`;
+        } else if (filterType === 'all') {
+          url += '?all=true';
+        }
+        
+        return url;
+      }
+
+      function fetchProjectData(filterType = 'all') {
+        const url = buildRequestUrl(filterType);
+        fetch(url, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -212,6 +249,10 @@
             mainContent.style.display = 'block';
           }, 500);
         });
+      }
+
+      // تحميل البيانات الأولية
+      fetchProjectData('all');
 
       function renderStats(data) {
         console.log("ownerProjectReport : data =", data);

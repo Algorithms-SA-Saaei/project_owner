@@ -334,7 +334,9 @@ body {
     position: fixed;
     top: 15px;
     right: 15px;
+    background:#0f1a2c;
     background:linear-gradient(135deg, #0f1a2c, #233b5b, #3a5278);
+
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -343,4 +345,12 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     z-index: 1000;
+}
+#projectsBtn button {
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
